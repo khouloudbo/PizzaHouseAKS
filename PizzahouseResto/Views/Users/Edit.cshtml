@@ -1,0 +1,63 @@
+﻿@model ProfileFormViewModel
+
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+<section class="bg-gray-7">
+    <div class="breadcrumbs-custom box-transform-wrap context-dark">
+        <div class="container">
+            <h3 class="breadcrumbs-custom-title">Users</h3>
+            <div class="breadcrumbs-custom-decor"></div>
+        </div>
+        <div class="box-transform" style="        background-image: url(../images/bg-1.jpg);">
+
+        </div>
+    </div>
+
+</section>
+<div class="container p-3">
+    <form asp-action="Edit" method="post">
+        <h4>Modify Profile</h4>
+        <hr />
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" class="form-control" maxlength="100" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" class="form-control" maxlength="100" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="StreetAddress"></label>
+            <input asp-for="StreetAddress" class="form-control" maxlength="100" />
+            <span asp-validation-for="StreetAddress" class="text-danger"></span>
+        </div>
+
+        @*<div class="form-group">
+               <label asp-for="City" class="control-label"></label>
+               @Html.DropDownList("City",
+        new SelectList(Enum.GetValues(typeof(City))),
+        "Select City",
+        new { @class = "form-control" })
+           </div>*@
+        <button type="submit" class="btn btn-primary button-sm">Save</button>
+        <a asp-action="Index" class="btn btn-secondary button-sm">Cancel</a>
+    </form>
+    </div>
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }

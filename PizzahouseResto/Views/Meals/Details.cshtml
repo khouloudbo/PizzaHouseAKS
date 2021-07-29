@@ -1,0 +1,71 @@
+﻿@model PizzahouseResto.ViewModels.DetailsVM
+
+
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="card">
+            <form method="post">
+
+                <input asp-for="@Model.Meal.MealId" hidden />
+                <div class="container-fliud">
+                    <div class="wrapper row">
+                        <div class="preview col-md-6">
+                            <p class="vote"> <strong>@Model.Meal.Category</strong></p>
+                            <div class="preview-pic tab-content">
+                                <div class="tab-pane active" id="pic-1"><img src="@WC.ImagePath@Model.Meal.ImageName" /></div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="details col-md-6">
+                            <h3 class="product-title">@Model.Meal.Name</h3>
+
+                            <p class="product-description">@Html.Raw(Model.Meal.Description)</p>
+
+                            <div class="product-price-wrap">
+
+                                <div class="product-price">
+                                    Price: <span> @(Model.Meal.Price)</span><span> DT</span>
+                                </div>
+                            </div>
+
+
+                            <div class="product-price-wrap">
+
+                                <div class="product-price">
+                                    Quantity:  <input type="number" value="1" min="1" max="1000" step="1" name="qte" />
+                                </div>
+                            </div>
+
+
+
+                            <hr />
+                            <div class="action">
+
+
+                                <a asp-action="Menu" class="btn btn-secondary button-sm">Back to Menu</a>
+
+                                @if (Model.ExistsInCart)
+                                {
+                                    <a asp-action="RemoveFromCart" asp-route-id="@Model.Meal.MealId" class="btn btn-primary button-sm">Remove from Cart</a>
+                                }
+                                else
+                                {
+
+
+                                    <button type="submit" asp-route-id="@Model.Meal.MealId" class="btn button-sm btn-primary ">Add to Cart</button>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+
+            <hr />
+        </div>
+    </div>
+    </section>

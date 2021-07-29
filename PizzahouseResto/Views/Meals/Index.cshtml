@@ -1,0 +1,87 @@
+﻿@model IEnumerable<PizzahouseResto.Models.Meal>
+
+@{
+    ViewData["Title"] = "Menu Admin";
+}
+
+<section class="bg-gray-7">
+    <div class="breadcrumbs-custom box-transform-wrap context-dark">
+        <div class="container">
+            <h3 class="breadcrumbs-custom-title">Menu</h3>
+            <div class="breadcrumbs-custom-decor"></div>
+        </div>
+        <div class="box-transform" style="        background-image: url(../images/bg-1.jpg);">
+
+        </div>
+    </div>
+
+</section>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary"></h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Meals" asp-action="Create" class="btn btn-primary button-sm">
+                <i class="fas fa-plus"></i> &nbsp; Add New Meal To The Menu
+            </a>
+        </div>
+    </div>
+
+    <br /><br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Image
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td width="50%">@obj.Name</td>
+                        <td width="30%">@obj.Description</td>
+                        <td width="50%">@obj.Price</td>
+                        <td width="30%">
+                            <img src="@("~/images/"+@obj.ImageName)" asp-append-version="true" width="250px" height="250px" /></td>
+                        <td width="30%">@obj.Category</td>
+                        <td class="text-center">
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Meals" asp-route-Id="@obj.MealId" asp-action="Edit" class="btn btn-primary  button-xs">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a asp-controller="Meals" asp-route-Id="@obj.MealId" asp-action="Delete" class="btn btn-danger  button-xs">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p> No Meal exists.</p>
+    }
+
+</div>

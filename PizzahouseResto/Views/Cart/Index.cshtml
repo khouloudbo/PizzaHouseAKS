@@ -1,0 +1,94 @@
+﻿
+@model IEnumerable<Meal>
+
+<section class="bg-gray-7">
+    <div class="breadcrumbs-custom box-transform-wrap context-dark">
+        <div class="container">
+            <h3 class="breadcrumbs-custom-title">Checkout</h3>
+            <div class="breadcrumbs-custom-decor"></div>
+        </div>
+        <div class="box-transform" style="        background-image: url(../images/bg-1.jpg);"></div>
+    </div>
+    <div class="container">
+        <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Checkout</li>
+        </ul>
+    </div>
+</section>
+
+
+@if (Model.Count() > 0)
+{
+
+
+
+
+
+    <section class="section section-lg bg-default text-md-left">
+        <div class="container">
+            <div class="row row-60 justify-content-center">
+                <div class="col-lg-8">
+                    <h4 class="text-spacing-25 text-transform-none">Checkout</h4>
+                    <hr class="divider-w pt-20">
+                    <form  method="post">
+                        <div class="row row-20 gutters-20">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-striped table-border checkout-table">
+                                        <tbody>
+                                            <tr>
+                                                <th class="hidden-xs">Item</th>
+                                                <th>Name</th>
+                                                <th class="hidden-xs">Price</th>
+                                                <th>Quantity</th>
+                                                <th>Total</th>
+                                                <th>Remove</th>
+                                            </tr>
+                                            @foreach (var obj in Model)
+                                            {
+                                        <tr>
+                                            <td class="hidden-xs"><a href="#"><img src="@WC.ImagePath@obj.ImageName" alt="Accessories Pack" /></a></td>
+                                            <td>
+                                                <h5 class="product-title font-alt">@obj.Name</h5>
+                                            </td>
+                                            <td class="hidden-xs">
+                                                <h5 class="product-title font-alt">@obj.Price <span> DT</span></h5>
+                                            </td>
+                                            <td>
+                                                <h5 class="product-title font-alt">@obj.Quantity <span> </span></h5>
+
+                                            </td>
+                                            <td>
+                                                <h5 class="product-title font-alt">@{@(obj.Quantity* obj.Price)} <span> DT </span></h5>
+
+                                            </td>
+
+                                            <td class="pr-remove"><a asp-action="Remove" asp-route-id="@obj.MealId" title="Remove" class="remove"><i class="fa fa-times"></i></a></td>
+                                        </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <button class="button button-secondary button-winona" type="submit">Checkout</button>
+                        <a asp-action="Menu" asp-controller="Meals" class="button button-primpary button-winona">Continue Shopping</a>
+                    </form>
+                </div>
+              
+            </div>
+        </div>
+    </section>
+
+
+
+}
+else
+{
+    <p>Please add items to cart.</p>
+}

@@ -1,0 +1,112 @@
+﻿@model IEnumerable<PizzahouseResto.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders Admin";
+}
+
+<section class="bg-gray-7">
+    <div class="breadcrumbs-custom box-transform-wrap context-dark">
+        <div class="container">
+            <h3 class="breadcrumbs-custom-title">Orders</h3>
+            <div class="breadcrumbs-custom-decor"></div>
+        </div>
+        <div class="box-transform" style="        background-image: url(../images/bg-1.jpg);">
+
+        </div>
+    </div>
+
+</section>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary"></h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="History" class="btn btn-primary button-sm">
+                <i class="fa fa-history"></i> &nbsp; Completed Orders' History
+            </a>
+        </div>
+    </div>
+
+    <br /><br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Meals
+                    </th>
+                    <th>
+                        Order Date
+                    </th>
+                    <th>
+                        UserName
+                    </th>
+                    <th>
+
+                        Total Price
+                    </th>
+                    <th>
+
+                        Status
+                    </th>
+                    @*<th>
+                            Status
+                        </th>*@
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    @if (obj.Status)
+                    {
+                        <tr>
+                            <td class="text-center" width="50%">
+                                @foreach (var item in @obj.Meals)
+                                {
+
+                                    <div class="w-75 btn-group" role="group">
+                                        <a>
+                                            @item.Quantity  <span>X </span>
+                                        </a>
+                                        <a>
+                                            <span> </span>  @item.Name
+
+
+                                        </a>
+                                    </div>
+
+                                }
+
+
+
+                            </td>
+                            <td width="30%">@obj.OrderDate</td>
+                            <td width="50%">@obj.ApplicationUser.UserName</td>
+
+                            <td width="50%">@obj.TotalPrice</td>
+
+
+
+                            <td width="50%">Treated</td>
+
+
+
+
+                           
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p> No Order completed yet.</p>
+    }
+
+</div>
