@@ -1,11 +1,11 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
 kind: Deployment 
 metadata: 
-  name: pizzaHouse-deployment 
+  name: pizzahouse-deployment 
 spec: 
   selector: 
     matchLabels: 
-      app: pizzaHouse 
+      app: pizzahouse 
   replicas: 5 # tells deployment to run 2 pods matching the template 
   template:
     metadata: 
@@ -22,10 +22,10 @@ spec:
 kind: Service 
 apiVersion: v1 
 metadata: 
-  name: pizzaHouse-service 
+  name: pizzahouse-service 
 spec: 
   selector: 
-    app: pizzaHouse 
+    app: pizzahouse 
   ports: 
   - protocol: TCP 
     port: 80 
