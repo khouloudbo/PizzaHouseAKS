@@ -10,10 +10,10 @@ spec:
   template:
     metadata: 
       labels: 
-        app: pizzaHouse 
+        app: pizzahouse 
     spec: 
       containers: 
-      - name: pizzaHouse 
+      - name: pizzahouse 
         image: 52546465/pizzaHouse-app:#{Build.BuildId}#
         ports: 
         - containerPort: 80 
