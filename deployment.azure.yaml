@@ -1,0 +1,33 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
+kind: Deployment 
+metadata: 
+  name: pizzahouse-deployment 
+spec: 
+  selector: 
+    matchLabels: 
+      app: pizzahouse 
+  replicas: 5 # tells deployment to run 2 pods matching the template 
+  template:
+    metadata: 
+      labels: 
+        app: pizzahouse 
+    spec: 
+      containers: 
+      - name: pizzahouse 
+        image: 52546465/pizzahouse-app:#{Build.BuildId}#
+        ports: 
+        - containerPort: 80 
+--- 
+# https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service  
+kind: Service 
+apiVersion: v1 
+metadata: 
+  name: pizzahouse-service 
+spec: 
+  selector: 
+    app: pizzahouse 
+  ports: 
+  - protocol: TCP 
+    port: 80 
+    targetPort: 80 
+  type: LoadBalancer 
