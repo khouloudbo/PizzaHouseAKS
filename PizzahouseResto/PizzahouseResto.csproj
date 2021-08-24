@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-PizzahouseResto-131D4F85-DF52-45BD-B57C-28CFC678720C</UserSecretsId>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+	<MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish> 
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
